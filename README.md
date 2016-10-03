@@ -10,7 +10,10 @@ Metrics are exported to Prometheus of trace durations by name/family, trace coun
 
 the net/trace#EventLog is also implemented in the same manner, minus metrics exposition, which doesn't make sense there.
 
-See the examples directory for usage hints until the README is updated with better documentation.
+examples/gogrep has an example command-line application that shows usage of the `trace` functionality to both capture trace information and logs with a single tool.
+
+examples/service has an example web application that shows usage of the `trace` functionality to both capture trace information and logs with a single tool, combined with the `trace.EventLog` which serves as a single logging and event source for your application.
+
 
 ### Log Output - trace
 
