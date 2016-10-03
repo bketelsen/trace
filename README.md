@@ -6,7 +6,7 @@
 
 `trace` wraps all of the functionality of net/trace, but also replicates the logs to a structured logger built on Go's standard logging library. 
 
-Metrics are exported to Prometheus of trace durations by name/family, trace counts by name/family, and errors by trace name/family.
+Metrics are exported to Prometheus with trace duration histograms by name/family, trace counts by name/family, and errors by trace name/family.
 
 the net/trace#EventLog is also implemented in the same manner, minus metrics exposition, which doesn't make sense there.
 
