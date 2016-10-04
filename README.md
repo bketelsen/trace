@@ -1,6 +1,6 @@
 ## Trace
 
-[![](https://godoc.org/github.com/bketelsen/trace?status.svg)](http://godoc.org/github.com/bketelsen/trace)
+[![](https://godoc.org/github.com/bketelsen/trace?status.svg)](http://godoc.org/github.com/bketelsen/trace)  [![Go Report Card](https://goreportcard.com/badge/github.com/bketelsen/trace)](https://goreportcard.com/report/github.com/bketelsen/trace)
 
 `trace` is a wrapper for [the net/trace package](https://github.com/golang/net/tree/master/trace) that adds logging and metrics to de-clutter your functions.
 
