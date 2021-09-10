@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/pkg/errors"
@@ -82,13 +83,19 @@ func ServeMetrics(ctx context.Context, l net.Listener) error {
 // Should be called in a defer in main() of a cli application.
 // For long-running services, use ServeMetrics instead
 func PushMetrics(ctx context.Context, task string, gatewayURL string) {
-	if err := push.Collectors(
-		task, push.HostnameGroupingKey(),
-		gatewayURL,
-		histograms, counts, errcounts,
-	); err != nil {
-		fmt.Println("Could not push completion time to Pushgateway:", err)
+	hostname, err := os.Hostname()
+	if err != nil {
+		panic(err) // todo?
 	}
+	if err := push.New(gatewayURL, task).
+		Collector(histograms).
+		Collector(counts).
+		Collector(errcounts).
+		Grouping("hostname", hostname).
+		Push(); err != nil {
+		fmt.Println("Could not push to Prometheus push gateway:", err)
+	}
+
 }
 
 // DumpMetrics returns the metrics prometheus would return when collected
